@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision objectWeHit)
     {
-        if (collision.gameObject.CompareTag("Target"))
+        if (objectWeHit.gameObject.CompareTag("Target"))
         {
-            print("击中" + collision.gameObject.name + "!");
+            print("击中" + objectWeHit.gameObject.name + "!");
+
+            CreatBulletImpactEffect(objectWeHit);
+
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Wall"))
+        if (objectWeHit.gameObject.CompareTag("Wall"))
         {
             print("击中一面墙");
+
+            CreatBulletImpactEffect(objectWeHit);
+
             Destroy(gameObject);
         }
     }
+
+
+    void CreatBulletImpactEffect(Collision objectWeHit)
+    {
+        ContactPoint contact = objectWeHit.contacts[0];
+
+        GameObject hole = Instantiate(
+            GlobalReferences.Instance.bulletImpactEffertPrefab,
+            contact.point,
+            Quaternion.LookRotation(contact.normal)
+            );
+
+        hole.transform.SetParent(objectWeHit.gameObject.transform);
+
+
+    }
+
 }
