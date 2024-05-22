@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
+    private const string ANIMATOR_RECOIL = "RECOIL";
 
     //射击
     public bool isShooting;
@@ -27,6 +27,10 @@ public class Weapon : MonoBehaviour
     public float bulletPrefabLifeTime = 3f;
 
 
+    public GameObject muzzleEffect;
+    private Animator animator;
+
+
     public enum ShootingMode
     {
         Single,
@@ -40,6 +44,7 @@ public class Weapon : MonoBehaviour
     {
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,6 +71,14 @@ public class Weapon : MonoBehaviour
 
     private void FireWeapon()
     {
+        //枪口开枪特效
+        muzzleEffect.GetComponent<ParticleSystem>().Play();
+        //后坐力动画
+        animator.SetTrigger(ANIMATOR_RECOIL);
+
+        //枪声实例化，单例模式
+        SoundManager.Instance.shootingSoundM1911.Play();
+
 
         readyToShoot = false;
 
