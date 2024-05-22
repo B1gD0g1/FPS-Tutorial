@@ -6,7 +6,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    public Camera playerCamera;
 
     //射击
     public bool isShooting;
@@ -112,7 +111,7 @@ public class Weapon : MonoBehaviour
     private Vector3 CalculateDirectionAndSpread()
     {
         //从屏幕中间射击来检查我们所指的位置
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         Vector3 targetPoint;
