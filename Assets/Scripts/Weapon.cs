@@ -7,6 +7,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private const string ANIMATOR_RECOIL = "RECOIL";
+    private const string ANIMATOR_RELOAD = "RELOAD";
 
     //Éä»÷
     public bool isShooting;
@@ -39,6 +40,11 @@ public class Weapon : MonoBehaviour
     public bool isReloading;
 
 
+    public enum WeaponModel
+    {
+        PistolM1911,
+        M4,
+    }
 
     public enum ShootingMode
     {
@@ -47,6 +53,7 @@ public class Weapon : MonoBehaviour
         Auto,
     }
 
+    public WeaponModel thisWeaponModel;
     public ShootingMode currentShootingMode;
 
     private void Awake()
@@ -122,7 +129,8 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger(ANIMATOR_RECOIL);
 
         //Ç¹ÉùÊµÀý»¯£¬µ¥ÀýÄ£Ê½
-        SoundManager.Instance.shootingSoundM1911.Play();
+        //SoundManager.Instance.shootingSoundM1911.Play();
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
 
 
         readyToShoot = false;
@@ -163,7 +171,9 @@ public class Weapon : MonoBehaviour
     private void Reload()
     {
         //»»µ¯ÉùÒô
-        SoundManager.Instance.reloadingSoundM1911.Play();
+        SoundManager.Instance.PlayReloadSound(thisWeaponModel);
+
+        animator.SetTrigger(ANIMATOR_RELOAD);
 
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
