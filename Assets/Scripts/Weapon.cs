@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
@@ -38,6 +39,11 @@ public class Weapon : MonoBehaviour
     public int magazineSize;
     public int BulletsLeft;
     public bool isReloading;
+
+    //存储第一人称武器的坐标
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
+    
 
 
     public enum WeaponModel
