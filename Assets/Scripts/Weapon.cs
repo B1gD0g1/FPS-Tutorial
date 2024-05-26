@@ -10,6 +10,9 @@ public class Weapon : MonoBehaviour
     private const string ANIMATOR_RECOIL = "RECOIL";
     private const string ANIMATOR_RELOAD = "RELOAD";
 
+    //判断是否拿着武器
+    public bool isActiveWeapon;
+
     //射击
     public bool isShooting;
     public bool readyToShoot;
@@ -78,49 +81,52 @@ public class Weapon : MonoBehaviour
     void Update()
     {
 
-        //空弹匣情况下按射击发出的声音
-        if (BulletsLeft ==0 && isShooting)
+        if (isActiveWeapon)
         {
-            SoundManager.Instance.emptyMagazineSoundM1911.Play();
+            //空弹匣情况下按射击发出的声音
+            if (BulletsLeft == 0 && isShooting)
+            {
+                SoundManager.Instance.emptyMagazineSoundM1911.Play();
+            }
+
+
+            if (currentShootingMode == ShootingMode.Auto)
+            {
+                //长按鼠标左键发射子弹
+                isShooting = Input.GetKey(KeyCode.Mouse0);
+            }
+            else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
+            {
+                //点按鼠标左键发射子弹
+                isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.R) && BulletsLeft < magazineSize && isReloading == false)
+            {
+                Reload();
+            }
+
+            ////空弹匣时自动重新装填
+            //if (readyToShoot && isShooting == false && isReloading == false && BulletsLeft <= 0)
+            //{
+            //    Reload();
+            //}
+
+
+            if (readyToShoot && isShooting && BulletsLeft > 0)
+            {
+                burstBulletsLeft = bulletsPerBurst;
+                FireWeapon();
+            }
+
+
+            if (AmmoManager.Instance.ammoDisplay != null)
+            {
+                AmmoManager.Instance.ammoDisplay.text = $"{BulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
+            }
+
         }
-
-
-        if (currentShootingMode == ShootingMode.Auto)
-        {
-            //长按鼠标左键发射子弹
-            isShooting = Input.GetKey(KeyCode.Mouse0);
-        }
-        else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
-        {
-            //点按鼠标左键发射子弹
-            isShooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.R) && BulletsLeft < magazineSize && isReloading == false)
-        {
-            Reload();
-        }
-
-        ////空弹匣时自动重新装填
-        //if (readyToShoot && isShooting == false && isReloading == false && BulletsLeft <= 0)
-        //{
-        //    Reload();
-        //}
-
-
-        if (readyToShoot && isShooting && BulletsLeft > 0)
-        {
-            burstBulletsLeft = bulletsPerBurst;
-            FireWeapon();
-        }
-
-
-        if (AmmoManager.Instance.ammoDisplay != null)
-        {
-            AmmoManager.Instance.ammoDisplay.text = $"{BulletsLeft/bulletsPerBurst}/{magazineSize/bulletsPerBurst}";
-        }
-
     }
 
     private void FireWeapon()
