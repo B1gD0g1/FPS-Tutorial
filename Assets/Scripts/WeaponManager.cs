@@ -48,6 +48,17 @@ public class WeaponManager : MonoBehaviour
                 weaponSlot.SetActive(false);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchActiveSlot(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchActiveSlot(1);
+        }
+
     }
 
     public void PickupWeapon(GameObject pickedupWeapon)
@@ -70,6 +81,7 @@ public class WeaponManager : MonoBehaviour
         pickedupWeapon.transform.localScale = new Vector3(weapon.spawmScale.x,weapon.spawmScale.y,weapon.spawmScale.z);
 
         weapon.isActiveWeapon = true;
+        weapon.animator.enabled = true;
 
         //射线过滤玩家手中的武器
         pickedupWeapon.layer = LayerMask.NameToLayer(LAYER_PLAYERWEAPON);
@@ -81,13 +93,15 @@ public class WeaponManager : MonoBehaviour
         if (activeWeaponSlot.transform.childCount > 0)
         {
             var weaponToDrop = activeWeaponSlot.transform.GetChild(0).gameObject;
+            Debug.Log(weaponToDrop.name);
 
             weaponToDrop.GetComponent<Weapon>().isActiveWeapon = false;
+            weaponToDrop.GetComponent<Weapon>().animator.enabled = false;
 
             weaponToDrop.transform.SetParent(pickedupWeapon.transform.parent);
             weaponToDrop.transform.localPosition = pickedupWeapon.transform.localPosition;
             weaponToDrop.transform.localRotation = pickedupWeapon.transform.localRotation;
-            weaponToDrop.transform.localScale = pickedupWeapon.transform.localScale;
+            weaponToDrop.transform.localScale = (weaponToDrop.transform.localScale) / 2;//不知道为什么会自动放大两倍，所以除于2
 
             //将丢弃的武器恢复射线过滤
             weaponToDrop.layer = LayerMask.NameToLayer(LAYER_DEFAULT);
@@ -95,4 +109,26 @@ public class WeaponManager : MonoBehaviour
 
         }
     }
+
+    //切换主副武器槽
+    public void SwitchActiveSlot(int slotNumber)
+    {
+        //禁用第一个武器槽
+        if (activeWeaponSlot.transform.childCount > 0)
+        {
+            Weapon currentWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<Weapon>();
+            currentWeapon.isActiveWeapon = false;
+        }
+
+        activeWeaponSlot = weaponSlots[slotNumber];
+
+        //开启第二个武器槽
+        if (activeWeaponSlot.transform.childCount > 0)
+        {
+            Weapon newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<Weapon>();
+            newWeapon.isActiveWeapon = true;
+        }
+
+    }
+
 }

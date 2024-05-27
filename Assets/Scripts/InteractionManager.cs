@@ -43,7 +43,7 @@ public class InteractionManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     WeaponManager.Instance.PickupWeapon(objectHitByRaycast.gameObject);
-                    hoveredWeapon.GetComponent<Outline>().enabled = false;
+                    //hoveredWeapon.GetComponent<Outline>().enabled = false;
                 }
             }
             else

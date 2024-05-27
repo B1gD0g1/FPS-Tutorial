@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
 
 
     public GameObject muzzleEffect;
-    private Animator animator;
+    internal Animator animator;
 
 
     //换弹 reloading
@@ -86,6 +86,10 @@ public class Weapon : MonoBehaviour
 
         if (isActiveWeapon)
         {
+            
+            GetComponent<Outline>().enabled = false;
+
+
             //空弹匣情况下按射击发出的声音
             if (BulletsLeft == 0 && isShooting)
             {
