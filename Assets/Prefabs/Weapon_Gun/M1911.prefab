@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2418069672113784185}
   - component: {fileID: 2540012071201051763}
   - component: {fileID: 2540730605441134577}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675541584715420501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CINEMA_4D_Editor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4809,7 +4809,7 @@ GameObject:
   - component: {fileID: 4675342594591355799}
   - component: {fileID: 4655191359051455097}
   - component: {fileID: 4664014300027217875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4892,7 +4892,7 @@ GameObject:
   - component: {fileID: 4682677746620981117}
   - component: {fileID: 4654708791821229517}
   - component: {fileID: 4663962095562940239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4975,7 +4975,7 @@ GameObject:
   - component: {fileID: 4675332289348784745}
   - component: {fileID: 4655563980530188189}
   - component: {fileID: 4663984541081402655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Magazin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5060,7 +5060,7 @@ GameObject:
   - component: {fileID: 4682635802251848231}
   - component: {fileID: 8835707971333535118}
   - component: {fileID: 8835707971333535119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M1911
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5182,7 +5182,7 @@ GameObject:
   - component: {fileID: 4682809700954242423}
   - component: {fileID: 4655590946792871927}
   - component: {fileID: 4664033933850702995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M1911
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5269,7 +5269,7 @@ GameObject:
   - component: {fileID: 4682623367709373799}
   - component: {fileID: 4655070343744804681}
   - component: {fileID: 4665179997927720689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5350,7 +5350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7910673276856680305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
