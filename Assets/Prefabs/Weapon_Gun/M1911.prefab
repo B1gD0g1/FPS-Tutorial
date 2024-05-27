@@ -5117,6 +5117,7 @@ MonoBehaviour:
   isReloading: 0
   spawnPosition: {x: 0.25, y: 1.28, z: 1.25}
   spawnRotation: {x: 0, y: 180, z: 0}
+  spawmScale: {x: 4, y: 4, z: 4}
   thisWeaponModel: 0
   currentShootingMode: 0
 --- !u!95 &4682635802251848231

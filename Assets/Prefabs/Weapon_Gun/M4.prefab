@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bfb094b5d18a343bf98a4aba01ccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   allowReset: 1
@@ -423,6 +424,7 @@ MonoBehaviour:
   isReloading: 0
   spawnPosition: {x: 1.3, y: 0.7, z: 3.8}
   spawnRotation: {x: 0, y: 0, z: 0}
+  spawmScale: {x: 1.3, y: 1.3, z: 1.3}
   thisWeaponModel: 1
   currentShootingMode: 2
 --- !u!95 &2757352108502353199

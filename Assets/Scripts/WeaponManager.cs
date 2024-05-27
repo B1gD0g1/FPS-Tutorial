@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+
+    public const string LAYER_PLAYERWEAPON = "PlayerWeapon";
+    public const string LAYER_DEFAULT = "Default";
+
+
+
     public static WeaponManager Instance { get; set; }
 
     public List<GameObject> weaponSlots;
@@ -60,9 +66,13 @@ public class WeaponManager : MonoBehaviour
         Weapon weapon = pickedupWeapon.GetComponent<Weapon>();
 
         pickedupWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x,weapon.spawnPosition.y,weapon.spawnPosition.z);
-        pickedupWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
+        pickedupWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x,weapon.spawnRotation.y,weapon.spawnRotation.z);
+        pickedupWeapon.transform.localScale = new Vector3(weapon.spawmScale.x,weapon.spawmScale.y,weapon.spawmScale.z);
 
         weapon.isActiveWeapon = true;
+
+        //射线过滤玩家手中的武器
+        pickedupWeapon.layer = LayerMask.NameToLayer(LAYER_PLAYERWEAPON);
 
     }
 
@@ -77,6 +87,12 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.transform.SetParent(pickedupWeapon.transform.parent);
             weaponToDrop.transform.localPosition = pickedupWeapon.transform.localPosition;
             weaponToDrop.transform.localRotation = pickedupWeapon.transform.localRotation;
+            weaponToDrop.transform.localScale = pickedupWeapon.transform.localScale;
+
+            //将丢弃的武器恢复射线过滤
+            weaponToDrop.layer = LayerMask.NameToLayer(LAYER_DEFAULT);
+            
+
         }
     }
 }

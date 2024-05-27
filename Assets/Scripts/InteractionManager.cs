@@ -9,6 +9,7 @@ public class InteractionManager : MonoBehaviour
 
 
     public Weapon hoveredWeapon = null;
+    public LayerMask mask;
 
 
     private void Awake()
@@ -26,24 +27,24 @@ public class InteractionManager : MonoBehaviour
 
     private void Update()
     {
+
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray , out hit))
+        if (Physics.Raycast(ray , out hit , 10f , mask))
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
 
-            //&& objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false
-            if (objectHitByRaycast.GetComponent<Weapon>() )
+            if (objectHitByRaycast.GetComponent<Weapon>() && objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false)
             {
                 hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
                 hoveredWeapon.GetComponent<Outline>().enabled = true;
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    WeaponManager.Instance.PickupWeapon(objectHitByRaycast.gameObject); 
+                    WeaponManager.Instance.PickupWeapon(objectHitByRaycast.gameObject);
+                    hoveredWeapon.GetComponent<Outline>().enabled = false;
                 }
-
             }
             else
             {
@@ -52,6 +53,7 @@ public class InteractionManager : MonoBehaviour
                     hoveredWeapon.GetComponent<Outline>().enabled = false;
                 }
             }
+            //Debug.Log(hit.collider.gameObject.name);
         }
     }
 

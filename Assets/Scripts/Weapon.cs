@@ -46,7 +46,10 @@ public class Weapon : MonoBehaviour
     //存储第一人称武器的坐标
     public Vector3 spawnPosition;
     public Vector3 spawnRotation;
-    
+
+    //记录物体原先的scale值
+    public Vector3 spawmScale;
+
 
 
     public enum WeaponModel
