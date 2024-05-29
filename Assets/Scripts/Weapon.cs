@@ -67,6 +67,7 @@ public class Weapon : MonoBehaviour
     {
         PistolM1911,
         M4,
+        USP45,
     }
 
     public enum ShootingMode
@@ -270,11 +271,11 @@ public class Weapon : MonoBehaviour
 
         Vector3 direction = targetPoint - bulletSpawn.position;
 
-        float z = UnityEngine.Random.Range(-spreadIntersity, spreadIntersity);
+        float x = UnityEngine.Random.Range(-spreadIntersity, spreadIntersity);
         float y = UnityEngine.Random.Range(-spreadIntersity, spreadIntersity);
 
         //返回射击方向和扩散
-        return direction + new Vector3(0, y, z);
+        return direction + new Vector3(x, y, 0);
     }
 
     private IEnumerator DestroyBullerAfterTime(GameObject bullet, float delay)

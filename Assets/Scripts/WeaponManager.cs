@@ -22,7 +22,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Ammo")]
     public int totalRifleAmmo = 0;
-    public int toatlPistolAmmo = 0;
+    public int totalPistolAmmo = 0;
 
 
 
@@ -145,7 +145,7 @@ public class WeaponManager : MonoBehaviour
         switch (ammo.ammoType)
         {
             case AmmoBox.AmmoType.PistolAmmo:
-                toatlPistolAmmo += ammo.ammoAmount;
+                totalPistolAmmo += ammo.ammoAmount;
                 break;
             case AmmoBox.AmmoType.RifleAmmo:
                 totalRifleAmmo += ammo.ammoAmount;
@@ -159,7 +159,10 @@ public class WeaponManager : MonoBehaviour
         switch (thisWeaponModel)
         {
             case Weapon.WeaponModel.PistolM1911:
-                toatlPistolAmmo -= bulletsToDecrease;
+                totalPistolAmmo -= bulletsToDecrease;
+                break;
+            case Weapon.WeaponModel.USP45:
+                totalPistolAmmo -= bulletsToDecrease;
                 break;
             case Weapon.WeaponModel.M4:
                 totalRifleAmmo -= bulletsToDecrease;
@@ -172,7 +175,9 @@ public class WeaponManager : MonoBehaviour
         switch (thisWeaponModel)
         {
             case WeaponModel.PistolM1911:
-                return toatlPistolAmmo;
+                return totalPistolAmmo;
+            case WeaponModel.USP45:
+                return totalPistolAmmo;
             case WeaponModel.M4:
                 return totalRifleAmmo;
             default:
