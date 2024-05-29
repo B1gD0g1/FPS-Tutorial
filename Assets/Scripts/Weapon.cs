@@ -9,23 +9,34 @@ public class Weapon : MonoBehaviour
 {
     private const string ANIMATOR_RECOIL = "RECOIL";
     private const string ANIMATOR_RELOAD = "RELOAD";
+    private const string ANIMATOR_ISADS = "isADS";
+    private const string ANIMATOR_ENTERISADS = "enterADS";
+    private const string ANIMATOR_EXITISADS = "exitADS";
+    private const string ANIMATOR_RECOIL_ADS = "RECOIL_ADS";
 
+    
     //判断是否拿着武器
     public bool isActiveWeapon;
 
+    [Header("射击")]
     //射击
     public bool isShooting;
     public bool readyToShoot;
     public bool allowReset = true;
     public float shootingDelay = 2f;
 
+    [Header("连发")]
     //连发模式
     public int bulletsPerBurst = 3;
     public int burstBulletsLeft;
 
-    //散射 Spread
-    public float spreadIntersity; 
+    [Header("扩散")]
+    //扩散 Spread
+    public float spreadIntersity;
+    public float hipSpreadIntersity;//腰射精准度
+    public float adsSpreadIntersity;//开机精准度
 
+    [Header("子弹")]
     //子弹
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -36,7 +47,7 @@ public class Weapon : MonoBehaviour
     public GameObject muzzleEffect;
     internal Animator animator;
 
-
+    [Header("换弹")]
     //换弹 reloading
     public float reloadTime;
     public int magazineSize;
@@ -50,7 +61,7 @@ public class Weapon : MonoBehaviour
     //记录物体原先的scale值
     public Vector3 spawmScale;
 
-
+    private bool isADS;
 
     public enum WeaponModel
     {
@@ -77,16 +88,28 @@ public class Weapon : MonoBehaviour
 
         BulletsLeft = magazineSize;
 
-
+        spreadIntersity = hipSpreadIntersity;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            EnterADS();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            ExitADS();
+        }
+
+
+
         if (isActiveWeapon)
         {
-            
+
             GetComponent<Outline>().enabled = false;
 
 
@@ -139,8 +162,19 @@ public class Weapon : MonoBehaviour
 
         //枪口开枪特效
         muzzleEffect.GetComponent<ParticleSystem>().Play();
+
         //后坐力动画
-        animator.SetTrigger(ANIMATOR_RECOIL);
+        if (isADS)
+        {
+            //开镜后坐力动画
+            animator.SetTrigger(ANIMATOR_RECOIL_ADS);
+        }
+        else
+        {
+            //腰射后坐力动画
+            animator.SetTrigger(ANIMATOR_RECOIL);
+        }
+
 
         //枪声实例化，单例模式
         //SoundManager.Instance.shootingSoundM1911.Play();
@@ -161,16 +195,16 @@ public class Weapon : MonoBehaviour
 
 
         //射出子弹
-        bullet.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletVelocity , ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletVelocity, ForceMode.Impulse);
 
         //一段时间后摧毁子弹
-        StartCoroutine(DestroyBullerAfterTime(bullet,bulletPrefabLifeTime));
+        StartCoroutine(DestroyBullerAfterTime(bullet, bulletPrefabLifeTime));
 
 
         //检查玩家是否完成了射击
         if (allowReset)
         {
-            Invoke("ResetShot",shootingDelay);
+            Invoke("ResetShot", shootingDelay);
             allowReset = false;
         }
 
@@ -178,7 +212,7 @@ public class Weapon : MonoBehaviour
         if (currentShootingMode == ShootingMode.Burst && burstBulletsLeft > 1)//在检查之前我们已经射击一次了
         {
             burstBulletsLeft--;
-            Invoke("FireWeapon",shootingDelay);
+            Invoke("FireWeapon", shootingDelay);
         }
     }
 
@@ -223,7 +257,7 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
 
         Vector3 targetPoint;
-        if (Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             //击中一些东西
             targetPoint = hit.point;
@@ -236,11 +270,11 @@ public class Weapon : MonoBehaviour
 
         Vector3 direction = targetPoint - bulletSpawn.position;
 
-        float x = UnityEngine.Random.Range(-spreadIntersity,spreadIntersity);
-        float y = UnityEngine.Random.Range(-spreadIntersity,spreadIntersity);
+        float z = UnityEngine.Random.Range(-spreadIntersity, spreadIntersity);
+        float y = UnityEngine.Random.Range(-spreadIntersity, spreadIntersity);
 
         //返回射击方向和扩散
-        return direction + new Vector3(x, y, 0);
+        return direction + new Vector3(0, y, z);
     }
 
     private IEnumerator DestroyBullerAfterTime(GameObject bullet, float delay)
@@ -248,4 +282,23 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Destroy(bullet);
     }
+
+    //进入开镜模式
+    private void EnterADS()
+    {
+        animator.SetTrigger(ANIMATOR_ENTERISADS);
+        isADS = true;
+        HUDManager.Instance.middleDot.SetActive(false);
+        spreadIntersity = adsSpreadIntersity;
+    }
+
+    //取消开机模式
+    private void ExitADS()
+    {
+        animator.SetTrigger(ANIMATOR_EXITISADS);
+        isADS = false;
+        HUDManager.Instance.middleDot.SetActive(true);
+        spreadIntersity = hipSpreadIntersity;
+    }
+
 }

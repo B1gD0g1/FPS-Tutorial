@@ -5083,7 +5083,7 @@ Transform:
   - {fileID: 4682809700954242423}
   - {fileID: 7910673276856680305}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 30, z: 90}
 --- !u!114 &4682635802251848232
 MonoBehaviour:
@@ -5104,7 +5104,9 @@ MonoBehaviour:
   shootingDelay: 0.5
   bulletsPerBurst: 1
   burstBulletsLeft: 0
-  spreadIntersity: 0.08
+  spreadIntersity: 0
+  hipSpreadIntersity: 0.4
+  adsSpreadIntersity: 0.08
   bulletPrefab: {fileID: 2766512016160177024, guid: 62fcb801fae74dd40ad2766efc271cfa,
     type: 3}
   bulletSpawn: {fileID: 7910673276856680305}
