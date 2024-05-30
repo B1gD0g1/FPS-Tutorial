@@ -9,7 +9,7 @@ public class InteractionManager : MonoBehaviour
 
 
     public Weapon hoveredWeapon = null;
-    public LayerMask mask;
+    //public LayerMask mask;
     public AmmoBox hoveredAmmoBox = null;
 
 
@@ -32,7 +32,7 @@ public class InteractionManager : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray , out hit , 10f , mask))
+        if (Physics.Raycast(ray , out hit , 10f))
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
 

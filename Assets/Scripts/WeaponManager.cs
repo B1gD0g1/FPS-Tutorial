@@ -92,8 +92,11 @@ public class WeaponManager : MonoBehaviour
         weapon.isActiveWeapon = true;
         weapon.animator.enabled = true;
 
+        //禁用box碰撞
+        pickedupWeapon.GetComponent<BoxCollider>().enabled = false;
+
         //射线过滤玩家手中的武器
-        pickedupWeapon.layer = LayerMask.NameToLayer(LAYER_PLAYERWEAPON);
+        //pickedupWeapon.layer = LayerMask.NameToLayer(LAYER_PLAYERWEAPON);
 
     }
 
@@ -113,7 +116,7 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.transform.localScale = (weaponToDrop.transform.localScale) / 2;//不知道为什么会自动放大两倍，所以除于2
 
             //将丢弃的武器恢复射线过滤
-            weaponToDrop.layer = LayerMask.NameToLayer(LAYER_DEFAULT);
+            //weaponToDrop.layer = LayerMask.NameToLayer(LAYER_DEFAULT);
             
 
         }

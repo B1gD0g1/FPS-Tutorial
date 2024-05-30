@@ -10,8 +10,8 @@ public class Weapon : MonoBehaviour
     private const string ANIMATOR_RECOIL = "RECOIL";
     private const string ANIMATOR_RELOAD = "RELOAD";
     private const string ANIMATOR_ISADS = "isADS";
-    private const string ANIMATOR_ENTERISADS = "enterADS";
-    private const string ANIMATOR_EXITISADS = "exitADS";
+    private const string ANIMATOR_ENTERADS = "enterADS";
+    private const string ANIMATOR_EXITADS = "exitADS";
     private const string ANIMATOR_RECOIL_ADS = "RECOIL_ADS";
 
     
@@ -287,16 +287,16 @@ public class Weapon : MonoBehaviour
     //进入开镜模式
     private void EnterADS()
     {
-        animator.SetTrigger(ANIMATOR_ENTERISADS);
+        animator.SetTrigger(ANIMATOR_ENTERADS);
         isADS = true;
         HUDManager.Instance.middleDot.SetActive(false);
         spreadIntersity = adsSpreadIntersity;
     }
 
-    //取消开机模式
+    //取消开镜模式
     private void ExitADS()
     {
-        animator.SetTrigger(ANIMATOR_EXITISADS);
+        animator.SetTrigger(ANIMATOR_EXITADS);
         isADS = false;
         HUDManager.Instance.middleDot.SetActive(true);
         spreadIntersity = hipSpreadIntersity;
