@@ -7,8 +7,10 @@ public class GlobalReferences : MonoBehaviour
     
     public static GlobalReferences Instance { get; set; }
 
+    //子弹特效
     public GameObject bulletImpactEffertPrefab;
-
+    //手榴弹特效
+    public GameObject grenadeExplosionEffect;
 
     private void Awake()
     {

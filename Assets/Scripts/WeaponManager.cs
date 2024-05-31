@@ -20,9 +20,17 @@ public class WeaponManager : MonoBehaviour
     public GameObject activeWeaponSlot;
 
 
-    [Header("Ammo")]
+    [Header("弹药 Ammo")]
     public int totalRifleAmmo = 0;
     public int totalPistolAmmo = 0;
+
+    [Header("可投掷物 Thorwable")]
+    public int grenades = 0;
+    public float throwForce = 10f;
+    public GameObject grenadePrefab;
+    public GameObject throwableSpawn;
+    public float forceMultiplier = 0f;
+    public float forceMultiplierLimit = 2f;//最大力
 
 
 
@@ -68,13 +76,39 @@ public class WeaponManager : MonoBehaviour
             SwitchActiveSlot(1);
         }
 
+        //长按G增加力，可投掷物扔的越远
+        if (Input.GetKey(KeyCode.G))
+        {
+            forceMultiplier += Time.deltaTime;
+
+            //限制最大的力
+            if (forceMultiplier > forceMultiplierLimit)
+            {
+                forceMultiplier = forceMultiplierLimit;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            if (grenades > 0)
+            {
+                ThrowLethal();
+            }
+
+            //重置
+            forceMultiplier = 0f;
+        }
+
     }
 
+
+    #region |--- 武器 Weapon ---|
     public void PickupWeapon(GameObject pickedupWeapon)
     {
         //添加武器到武器槽(主副武器)
         AddWeaponIntoActiveSlot(pickedupWeapon);
     }
+    #endregion
 
     private void AddWeaponIntoActiveSlot(GameObject pickedupWeapon)
     {
@@ -143,6 +177,7 @@ public class WeaponManager : MonoBehaviour
 
     }
 
+    #region |--- 弹药箱 AmmoBox ---|
     internal void PickupAmmo(AmmoBox ammo)
     {
         switch (ammo.ammoType)
@@ -156,6 +191,7 @@ public class WeaponManager : MonoBehaviour
         }
 
     }
+    #endregion
 
     internal void DecreaseTotalAmmo(int bulletsToDecrease, Weapon.WeaponModel thisWeaponModel)
     {
@@ -187,5 +223,42 @@ public class WeaponManager : MonoBehaviour
                 return 0;
         }
     }
+
+    #region |--- 可投掷物 Throwable ---|
+    public void PickupThrowable(Throwable throwable)
+    {
+        switch (throwable.throwableType)
+        {
+            case Throwable.ThrowableType.Grenade:
+                PickupThrowable();
+                break;
+        }
+    }
+
+    private void PickupThrowable()
+    {
+        grenades += 1;
+
+        HUDManager.Instance.UpdateThrowable(Throwable.ThrowableType.Grenade);
+    }
+
+    private void ThrowLethal()
+    {
+        GameObject lethalPrefab = grenadePrefab;
+
+        GameObject throwable = Instantiate(lethalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
+        Rigidbody rb = throwable.GetComponent<Rigidbody>();
+
+        rb.AddForce(Camera.main.transform.forward * (throwForce * forceMultiplier), ForceMode.Impulse );
+
+        throwable.GetComponent<Throwable>().hasBeenThrown = true;
+
+        //更新UI
+        grenades -= 1;
+        HUDManager.Instance.UpdateThrowable(Throwable.ThrowableType.Grenade);
+
+    }
+
+    #endregion
 
 }

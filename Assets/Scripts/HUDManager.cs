@@ -84,13 +84,13 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case Weapon.WeaponModel.PistolM1911:
-                return Instantiate(Resources.Load<GameObject>("PistolM1911_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("PistolM1911_Weapon").GetComponent<SpriteRenderer>().sprite;
 
             case Weapon.WeaponModel.USP45:
-                return Instantiate(Resources.Load<GameObject>("PistolM1911_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("PistolM1911_Weapon").GetComponent<SpriteRenderer>().sprite;
 
             case Weapon.WeaponModel.M4:
-                return Instantiate(Resources.Load<GameObject>("M4_Weapon")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("M4_Weapon").GetComponent<SpriteRenderer>().sprite;
             
             default:
                 return null;
@@ -102,13 +102,13 @@ public class HUDManager : MonoBehaviour
         switch (model)
         {
             case Weapon.WeaponModel.PistolM1911:
-                return Instantiate(Resources.Load<GameObject>("Pistol_Ammo")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Pistol_Ammo").GetComponent<SpriteRenderer>().sprite;
 
             case Weapon.WeaponModel.USP45:
-                return Instantiate(Resources.Load<GameObject>("Pistol_Ammo")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Pistol_Ammo").GetComponent<SpriteRenderer>().sprite;
 
             case Weapon.WeaponModel.M4:
-                return Instantiate(Resources.Load<GameObject>("Rifle_Ammo")).GetComponent<SpriteRenderer>().sprite;
+                return Resources.Load<GameObject>("Rifle_Ammo").GetComponent<SpriteRenderer>().sprite;
 
             default:
                 return null;
@@ -128,5 +128,15 @@ public class HUDManager : MonoBehaviour
         return null;
     }
 
+    internal void UpdateThrowable(Throwable.ThrowableType throwable)
+    {
+        switch (throwable)
+        {
+            case Throwable.ThrowableType.Grenade:
+                lethalAmountUI.text = $"{WeaponManager.Instance.grenades}";
+                lethalUI.sprite = Resources.Load<GameObject>("Grenade").GetComponent<SpriteRenderer>().sprite;
+                break;
 
+        }
+    }
 }
