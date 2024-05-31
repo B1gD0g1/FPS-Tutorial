@@ -24,13 +24,16 @@ public class WeaponManager : MonoBehaviour
     public int totalRifleAmmo = 0;
     public int totalPistolAmmo = 0;
 
-    [Header("可投掷物 Thorwable")]
-    public int grenades = 0;
+    [Header("常规可投掷物 Thorwables General")]
     public float throwForce = 10f;
-    public GameObject grenadePrefab;
     public GameObject throwableSpawn;
     public float forceMultiplier = 0f;
     public float forceMultiplierLimit = 2f;//最大力
+
+    [Header("爆炸性 lethals")]
+    public int lethalCount = 0;
+    public Throwable.ThrowableType equippedLethalType;
+    public GameObject grenadePrefab;
 
 
 
@@ -38,6 +41,9 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         activeWeaponSlot = weaponSlots[0];
+
+        equippedLethalType = Throwable.ThrowableType.None;
+
     }
 
     private void Awake()
@@ -90,7 +96,7 @@ public class WeaponManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.G))
         {
-            if (grenades > 0)
+            if (lethalCount > 0)
             {
                 ThrowLethal();
             }
@@ -230,21 +236,34 @@ public class WeaponManager : MonoBehaviour
         switch (throwable.throwableType)
         {
             case Throwable.ThrowableType.Grenade:
-                PickupThrowable();
+                PickupThrowableAsLethal(Throwable.ThrowableType.Grenade);
                 break;
         }
     }
 
-    private void PickupThrowable()
+    private void PickupThrowableAsLethal(Throwable.ThrowableType lethal)
     {
-        grenades += 1;
+        if (equippedLethalType == lethal || equippedLethalType == Throwable.ThrowableType.None)
+        {
+            equippedLethalType = lethal;
 
-        HUDManager.Instance.UpdateThrowable(Throwable.ThrowableType.Grenade);
+            if (lethalCount < 2)
+            {
+                lethalCount += 1;
+                Destroy(InteractionManager.Instance.hoveredThrowable.gameObject);
+                HUDManager.Instance.UpdateThrowablesUI();
+            }
+            else
+            {
+                print("达到投掷物限制数量");
+            }
+
+        }
     }
 
     private void ThrowLethal()
     {
-        GameObject lethalPrefab = grenadePrefab;
+        GameObject lethalPrefab = GetThrowablePrefab();
 
         GameObject throwable = Instantiate(lethalPrefab, throwableSpawn.transform.position, Camera.main.transform.rotation);
         Rigidbody rb = throwable.GetComponent<Rigidbody>();
@@ -254,9 +273,26 @@ public class WeaponManager : MonoBehaviour
         throwable.GetComponent<Throwable>().hasBeenThrown = true;
 
         //更新UI
-        grenades -= 1;
-        HUDManager.Instance.UpdateThrowable(Throwable.ThrowableType.Grenade);
+        lethalCount -= 1;
 
+        if (lethalCount <= 0)
+        {
+            equippedLethalType = Throwable.ThrowableType.None;
+        }
+
+        HUDManager.Instance.UpdateThrowablesUI();
+
+    }
+
+    private GameObject GetThrowablePrefab()
+    {
+        switch (equippedLethalType)
+        {
+            case Throwable.ThrowableType.Grenade:
+                return grenadePrefab;
+        }
+
+        return new();
     }
 
     #endregion

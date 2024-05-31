@@ -18,6 +18,7 @@ public class Throwable : MonoBehaviour
 
     public enum ThrowableType
     {
+        None,
         Grenade
     }
 
@@ -67,6 +68,10 @@ public class Throwable : MonoBehaviour
         //视觉效果 Visual Effect
         GameObject explosionEffect = GlobalReferences.Instance.grenadeExplosionEffect;
         Instantiate(explosionEffect, transform.position, transform.rotation);
+
+        //声音
+        SoundManager.Instance.throwableChannel.PlayOneShot(SoundManager.Instance.grenadeSound);
+
 
         //物理效果 Physical Effect
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);

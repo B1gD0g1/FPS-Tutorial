@@ -11,16 +11,16 @@ public class HUDManager : MonoBehaviour
     public static HUDManager Instance { get; set; }
 
 
-    [Header("Ammo")]
+    [Header("µØ“© Ammo")]
     public TextMeshProUGUI magazineAmmoUI;
     public TextMeshProUGUI totalAmmoUI;
     public Image ammoTypeUI;
 
-    [Header("Weapon")]
+    [Header("Œ‰∆˜ Weapon")]
     public Image activeWeaponUI;
     public Image unActiveWeaponUI;
 
-    [Header("Throwables")]
+    [Header("ø…Õ∂÷¿ŒÔ Throwables")]
     public Image lethalUI;
     public TextMeshProUGUI lethalAmountUI;
 
@@ -28,6 +28,7 @@ public class HUDManager : MonoBehaviour
     public TextMeshProUGUI tactialAmountUI;
 
     public Sprite emptySlot;
+    public Sprite greySlot;
 
     public GameObject middleDot;
 
@@ -75,6 +76,12 @@ public class HUDManager : MonoBehaviour
             activeWeaponUI.sprite = emptySlot;
             unActiveWeaponUI.sprite= emptySlot;
 
+        }
+
+
+        if (WeaponManager.Instance.lethalCount <= 0)
+        {
+            lethalUI.sprite = greySlot;
         }
 
     }
@@ -128,12 +135,14 @@ public class HUDManager : MonoBehaviour
         return null;
     }
 
-    internal void UpdateThrowable(Throwable.ThrowableType throwable)
+    internal void UpdateThrowablesUI()
     {
-        switch (throwable)
+        lethalAmountUI.text = $"{WeaponManager.Instance.lethalCount}";
+
+
+        switch (WeaponManager.Instance.equippedLethalType)
         {
             case Throwable.ThrowableType.Grenade:
-                lethalAmountUI.text = $"{WeaponManager.Instance.grenades}";
                 lethalUI.sprite = Resources.Load<GameObject>("Grenade").GetComponent<SpriteRenderer>().sprite;
                 break;
 
