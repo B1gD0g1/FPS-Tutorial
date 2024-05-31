@@ -887,7 +887,7 @@ MonoBehaviour:
     type: 3}
   throwableSpawn: {fileID: 125758708}
   forceMultiplier: 0
-  forceMultiplierLimit: 2
+  forceMultiplierLimit: 4
 --- !u!4 &572873513
 Transform:
   m_ObjectHideFlags: 0
