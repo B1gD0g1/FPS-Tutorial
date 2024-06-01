@@ -84,6 +84,11 @@ public class HUDManager : MonoBehaviour
             lethalUI.sprite = greySlot;
         }
 
+        if (WeaponManager.Instance.tacticalCount <= 0)
+        {
+            tactialUI.sprite = greySlot;
+        }
+
     }
 
     private Sprite GetWeaponSprite(Weapon.WeaponModel model)
@@ -138,6 +143,7 @@ public class HUDManager : MonoBehaviour
     internal void UpdateThrowablesUI()
     {
         lethalAmountUI.text = $"{WeaponManager.Instance.lethalCount}";
+        tactialAmountUI.text = $"{WeaponManager.Instance.tacticalCount}";
 
 
         switch (WeaponManager.Instance.equippedLethalType)
@@ -147,5 +153,14 @@ public class HUDManager : MonoBehaviour
                 break;
 
         }
+
+        switch (WeaponManager.Instance.equippedTacticalType)
+        {
+            case Throwable.ThrowableType.Smoke_Grenade:
+                tactialUI.sprite = Resources.Load<GameObject>("Smoke_Grenade").GetComponent<SpriteRenderer>().sprite;
+                break;
+
+        }
+
     }
 }

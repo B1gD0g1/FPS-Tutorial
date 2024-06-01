@@ -11,6 +11,7 @@ public class GlobalReferences : MonoBehaviour
     public GameObject bulletImpactEffertPrefab;
     // ÷¡ÒµØÃÿ–ß
     public GameObject grenadeExplosionEffect;
+    public GameObject smokeGrenadeEffect;
 
     private void Awake()
     {

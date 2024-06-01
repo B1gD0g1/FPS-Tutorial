@@ -19,7 +19,8 @@ public class Throwable : MonoBehaviour
     public enum ThrowableType
     {
         None,
-        Grenade
+        Grenade,
+        Smoke_Grenade
     }
 
     public ThrowableType throwableType;
@@ -48,7 +49,7 @@ public class Throwable : MonoBehaviour
     {
         GetThrowableEffect();
 
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     private void GetThrowableEffect()
@@ -58,8 +59,33 @@ public class Throwable : MonoBehaviour
             case ThrowableType.Grenade:
                 GrenadeEffect();
                 break;
-            default:
+            case ThrowableType.Smoke_Grenade:
+                SmokeGrenadeEffect();
                 break;
+        }
+    }
+
+    private void SmokeGrenadeEffect()
+    {
+
+        //视觉效果 Visual Effect
+        GameObject smokeEffect = GlobalReferences.Instance.smokeGrenadeEffect;
+        Instantiate(smokeEffect, transform.position, transform.rotation);
+
+        //声音
+        SoundManager.Instance.throwableChannel.PlayOneShot(SoundManager.Instance.grenadeSound);
+
+
+        //物理效果 Physical Effect
+        Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
+        foreach (Collider objectInRange in colliders)
+        {
+            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                //使敌人暂时失明
+
+            }
         }
     }
 
