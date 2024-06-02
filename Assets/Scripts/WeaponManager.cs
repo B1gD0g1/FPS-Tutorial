@@ -172,9 +172,13 @@ public class WeaponManager : MonoBehaviour
             weaponToDrop.transform.localRotation = pickedupWeapon.transform.localRotation;
             weaponToDrop.transform.localScale = (weaponToDrop.transform.localScale) / 2;//不知道为什么会自动放大两倍，所以除于2
 
+
+            //启用box碰撞
+            weaponToDrop.GetComponent<BoxCollider>().enabled = true;
+
             //将丢弃的武器恢复射线过滤
             //weaponToDrop.layer = LayerMask.NameToLayer(LAYER_DEFAULT);
-            
+
 
         }
     }
