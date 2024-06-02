@@ -14,7 +14,8 @@ public class Weapon : MonoBehaviour
     private const string ANIMATOR_EXITADS = "exitADS";
     private const string ANIMATOR_RECOIL_ADS = "RECOIL_ADS";
 
-    
+    //武器伤害
+    public int weaponDamage;
     //判断是否拿着武器
     public bool isActiveWeapon;
 
@@ -96,23 +97,25 @@ public class Weapon : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            EnterADS();
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            ExitADS();
-        }
-
-
-
         if (isActiveWeapon)
         {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
+            }
+
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                EnterADS();
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                ExitADS();
+            }
 
             GetComponent<Outline>().enabled = false;
-
 
             //空弹匣情况下按射击发出的声音
             if (BulletsLeft == 0 && isShooting)
@@ -152,6 +155,14 @@ public class Weapon : MonoBehaviour
             }
 
         }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+        }
+
     }
 
 
@@ -190,6 +201,8 @@ public class Weapon : MonoBehaviour
         //实例化子弹
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
 
+        Bullet bul = bullet.GetComponent<Bullet>();
+        bul.bulletDamage = weaponDamage;
 
         //将子弹对准射击方向
         bullet.transform.forward = shootingDirection;

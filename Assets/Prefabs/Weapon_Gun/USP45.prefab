@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6007395633914516574}
   - component: {fileID: 6007395633914516576}
   - component: {fileID: 6007395633914516575}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007395635045910380}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4808,7 +4808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520716765027765946}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Magazine_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512530483707319788}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Reload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4871,7 +4871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520491723656002444}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Bolt_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4902,7 +4902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520764637418122994}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Trigger_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512335854217993228}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4965,7 +4965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512100334082048770}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5001,7 +5001,7 @@ GameObject:
   - component: {fileID: 7517901097939439325}
   - component: {fileID: 7517901097939439327}
   - component: {fileID: 7517901097939439328}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: USP45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5024,7 +5024,7 @@ Transform:
   - {fileID: 7520623563373958676}
   - {fileID: 6007395635045910380}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 30}
 --- !u!114 &7517901097939439326
 MonoBehaviour:
@@ -5038,12 +5038,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bfb094b5d18a343bf98a4aba01ccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDamage: 26
   isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   allowReset: 1
   shootingDelay: 0.3
-  bulletsPerBurst: 3
+  bulletsPerBurst: 1
   burstBulletsLeft: 0
   spreadIntersity: 0
   hipSpreadIntersity: 0.5
@@ -5123,7 +5124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512397065327859270}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5158,7 +5159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512203010625549164}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5190,7 +5191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7512089866951813098}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Reload_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5221,7 +5222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520623563373958676}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: USP45_rigged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5254,7 +5255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7512004832715746594}
   - component: {fileID: 7617965595082008134}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Usp45_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
