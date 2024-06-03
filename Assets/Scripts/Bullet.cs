@@ -28,11 +28,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (objectWeHit.gameObject.CompareTag("Zombie"))
+        if (objectWeHit.gameObject.CompareTag("Enemy"))
         {
             print("击中一个敌人");
 
-            objectWeHit.gameObject.GetComponent<Zombie>().TakeDamage(bulletDamage);
+            objectWeHit.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
 
             Destroy(gameObject);
         }

@@ -110,6 +110,10 @@ public class Throwable : MonoBehaviour
             }
 
             //同时对范围内的敌人造成伤害
+            if (objectInRange.gameObject.GetComponent<Enemy>())
+            {
+                objectInRange.gameObject.GetComponent<Enemy>().TakeDamage(100);
+            }
 
         }
 

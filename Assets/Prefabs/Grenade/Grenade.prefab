@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 3
-  damageRadius: 50
-  explosionForce: 8000
+  damageRadius: 10
+  explosionForce: 2000
   hasBeenThrown: 0
   throwableType: 1
 --- !u!114 &-7319219097735123006
