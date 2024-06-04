@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 5304715420388324012}
   - component: {fileID: 5304715420388324003}
   - component: {fileID: 5304715420388324002}
+  - component: {fileID: 1386492178}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -193,6 +194,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1386492178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715420388324000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d2529cf646ebd4d81785b1b6171222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
 --- !u!1 &5304715420519425521
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +383,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -504,6 +518,7 @@ GameObject:
   - component: {fileID: 5304715421196100525}
   - component: {fileID: 5304715421196100520}
   - component: {fileID: 5304715421196100527}
+  - component: {fileID: 1829470658}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -584,3 +599,16 @@ MonoBehaviour:
   mouseSensitivity: 500
   topClamp: -90
   bottomClamp: 90
+--- !u!114 &1829470658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715421196100524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d2529cf646ebd4d81785b1b6171222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100

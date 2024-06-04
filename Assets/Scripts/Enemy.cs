@@ -45,4 +45,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+    private void OnDrawGizmos()
+    {
+        //¹¥»÷·¶Î§
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 8f);
+
+        //×·Öð·¶Î§
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 18f);
+
+        //Í£Ö¹×·Öð·¶Î§·¶Î§
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 30f);
+    }
+
 }
