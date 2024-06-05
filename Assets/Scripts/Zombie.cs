@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour
 
     public int zombieDamage;
 
+    public float playZombieSoundArea = 40f;
 
     private void Start()
     {

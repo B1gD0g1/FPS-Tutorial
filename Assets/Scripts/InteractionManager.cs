@@ -38,6 +38,13 @@ public class InteractionManager : MonoBehaviour
 
             if (objectHitByRaycast.GetComponent<Weapon>() && objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false)
             {
+
+                //禁用先前选定物体的轮廓
+                if (hoveredWeapon)
+                {
+                    hoveredWeapon.GetComponent<Outline>().enabled = false;
+                }
+
                 hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
                 hoveredWeapon.GetComponent<Outline>().enabled = true;
 
@@ -60,6 +67,13 @@ public class InteractionManager : MonoBehaviour
             //AmmoBox 武器箱
             if (objectHitByRaycast.GetComponent<AmmoBox>())
             {
+
+                //禁用先前选定物体的轮廓
+                if (hoveredAmmoBox)
+                {
+                    hoveredAmmoBox.GetComponent<Outline>().enabled = false;
+                }
+
                 hoveredAmmoBox = objectHitByRaycast.gameObject.GetComponent<AmmoBox>();
                 hoveredAmmoBox.GetComponent<Outline>().enabled = true;
 
@@ -80,6 +94,13 @@ public class InteractionManager : MonoBehaviour
             //Throwable 可投掷物
             if (objectHitByRaycast.GetComponent<Throwable>())
             {
+
+                //禁用先前选定物体的轮廓
+                if (hoveredThrowable)
+                {
+                    hoveredThrowable.GetComponent<Outline>().enabled = false;
+                }
+
                 hoveredThrowable = objectHitByRaycast.gameObject.GetComponent<Throwable>();
                 hoveredThrowable.GetComponent<Outline>().enabled = true;
 

@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent navAgent;
 
-
+    //用于判断敌人是否死亡
+    public bool isDead;
 
     private void Start()
     {
@@ -38,10 +39,19 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("DIE2");
             }
 
+            isDead = true;
+
+            //死亡音效
+            SoundManager.Instance.zombieHurtChannel.PlayOneShot(SoundManager.Instance.zombieDeath);
+
         }
         else
         {
             animator.SetTrigger("DAMAGE");
+
+            //被击中音效
+            SoundManager.Instance.zombieHurtChannel.PlayOneShot(SoundManager.Instance.zombieHurt);
+
         }
     }
 
@@ -59,6 +69,10 @@ public class Enemy : MonoBehaviour
         //停止追逐范围范围
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, 30f);
+
+        //播放僵尸音效区
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, 40f);
     }
 
 }

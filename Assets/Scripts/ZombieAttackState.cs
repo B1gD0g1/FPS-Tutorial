@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,17 +25,37 @@ public class ZombieAttackState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        //玩家与Zombie的距离
+        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
+
+        //Zombie音效有效区
+        if (distanceFromPlayer < GetPlayZombieSoundArea())
+        {
+            //攻击音效
+            if (SoundManager.Instance.zombieChannel.isPlaying == false)
+            {
+                SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieAttack);
+            }
+        }
+
+
         LookAtPlayer();
 
         // --- 检查是否应该停止攻击 --- //
 
-        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 
         if (distanceFromPlayer > stopAttackingDistance)
         {
             animator.SetBool("isAttacking", false);
         }
 
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //状态退出停止播放
+        SoundManager.Instance.zombieChannel.Stop();
     }
 
     private void LookAtPlayer()
@@ -46,4 +67,11 @@ public class ZombieAttackState : StateMachineBehaviour
         agent.transform.rotation = Quaternion.Euler(0, yRotation, 0);
 
     }
+
+    private float GetPlayZombieSoundArea()
+    {
+        float playZombieSoundArea = GameObject.Find("Zombie").GetComponent<Zombie>().playZombieSoundArea;
+        return playZombieSoundArea;
+    }
+
 }

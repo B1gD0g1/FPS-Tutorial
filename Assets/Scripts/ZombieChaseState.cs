@@ -8,6 +8,7 @@ public class ZombieChaseState : StateMachineBehaviour
 
     private Transform player;
     private NavMeshAgent agent;
+    private Zombie zombie;
 
     public float chaseSpread = 6f;
     public float stopChasingDistance = 21f;
@@ -25,11 +26,23 @@ public class ZombieChaseState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //玩家与对象的距离
+        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
+
+        if (distanceFromPlayer < GetPlayZombieSoundArea())
+        {
+            //追逐音效
+            if (SoundManager.Instance.zombieChannel.isPlaying == false)
+            {
+                SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieChase);
+            }
+        }
+
+
         //追逐玩家并一直看向玩家
         agent.SetDestination(player.position);
         animator.transform.LookAt(player);
 
-        float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 
         // --- 检查是否应该停止追逐 --- //
 
@@ -50,6 +63,15 @@ public class ZombieChaseState : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(animator.transform.position);
+
+        //状态退出停止播放
+        SoundManager.Instance.zombieChannel.Stop();
+    }
+
+    private float GetPlayZombieSoundArea()
+    {
+        float playZombieSoundArea = GameObject.Find("Zombie").GetComponent<Zombie>().playZombieSoundArea;
+        return playZombieSoundArea;
     }
 
 }
