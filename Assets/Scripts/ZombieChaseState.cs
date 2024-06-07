@@ -29,14 +29,16 @@ public class ZombieChaseState : StateMachineBehaviour
         //玩家与对象的距离
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 
-        if (distanceFromPlayer < GetPlayZombieSoundArea())
+        //if (distancefromplayer < getplayzombiesoundarea())
+        //{
+        //}
+
+        //追逐音效
+        if (SoundManager.Instance.zombieChannel.isPlaying == false)
         {
-            //追逐音效
-            if (SoundManager.Instance.zombieChannel.isPlaying == false)
-            {
-                SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieChase);
-            }
+            SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieChase);
         }
+
 
 
         //追逐玩家并一直看向玩家

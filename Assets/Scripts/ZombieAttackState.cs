@@ -29,15 +29,17 @@ public class ZombieAttackState : StateMachineBehaviour
         //玩家与Zombie的距离
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 
-        //Zombie音效有效区
-        if (distanceFromPlayer < GetPlayZombieSoundArea())
+        ////Zombie音效有效区
+        //if (distanceFromPlayer < GetPlayZombieSoundArea())
+        //{
+        //}
+
+        //攻击音效
+        if (SoundManager.Instance.zombieChannel.isPlaying == false)
         {
-            //攻击音效
-            if (SoundManager.Instance.zombieChannel.isPlaying == false)
-            {
-                SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieAttack);
-            }
+            SoundManager.Instance.zombieChannel.PlayOneShot(SoundManager.Instance.zombieAttack);
         }
+
 
 
         LookAtPlayer();

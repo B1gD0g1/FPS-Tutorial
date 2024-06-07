@@ -49,18 +49,19 @@ public class ZombiePatrolingState : StateMachineBehaviour
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
 
 
-        //进入Zombie声音有效区  
-        if (distanceFromPlayer < GetPlayZombieSoundArea())
+        //进入zombie声音有效区
+        //if (distancefromplayer < getplayzombiesoundarea())
+        //{
+        //}
+
+        //行走音效
+        if (SoundManager.Instance.zombieChannel.isPlaying == false)
         {
-            //行走音效
-            if (SoundManager.Instance.zombieChannel.isPlaying == false)
-            {
-                SoundManager.Instance.zombieChannel.clip = SoundManager.Instance.zombieWalking;
-                //延迟播放
-                SoundManager.Instance.zombieChannel.PlayDelayed(1f);
-            }
+            SoundManager.Instance.zombieChannel.clip = SoundManager.Instance.zombieWalking;
+            //延迟播放
+            SoundManager.Instance.zombieChannel.PlayDelayed(1f);
         }
-        
+
 
 
         // --- 如果敌人到达航路点，就移动到下一个航路点 --- //
@@ -71,7 +72,7 @@ public class ZombiePatrolingState : StateMachineBehaviour
 
         // --- 切换到闲置状态 --- //
         timer += Time.deltaTime;
-        if (timer >patrolingTimer)
+        if (timer > patrolingTimer)
         {
             animator.SetBool("isPatroling", false);
         }

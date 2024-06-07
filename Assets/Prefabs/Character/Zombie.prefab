@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35708291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0258, y: 0.2619, z: -0.0039}
+  m_LocalPosition: {x: -0.037, y: 0.375, z: -0.006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.17
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &35708294
 MonoBehaviour:
@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  isDead: 0
 --- !u!114 &4777055259790919705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombieHand: {fileID: 35708294}
   zombieDamage: 25
+  playZombieSoundArea: 40
 --- !u!1 &2354195064009333112
 GameObject:
   m_ObjectHideFlags: 0
