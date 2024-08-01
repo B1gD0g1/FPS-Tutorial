@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        playerHealthUI.text = $"Health: {HP}";
+        playerHealthUI.text = $"ÉúÃüÖµ: {HP}";
     }
 
     public void TakeDamage(int damageAmount)

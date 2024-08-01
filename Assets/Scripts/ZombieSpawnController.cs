@@ -42,7 +42,7 @@ public class ZombieSpawnController : MonoBehaviour
         currentZombiesAlive.Clear();
 
         currentWave++;
-        currentWaveUI.text = "Wave: " + currentWave.ToString();
+        currentWaveUI.text = "回合: " + currentWave.ToString();
 
         StartCoroutine(SpawnWave());
     }
@@ -53,7 +53,6 @@ public class ZombieSpawnController : MonoBehaviour
         {
             //生成指定范围内的随机偏移量
             Vector3 spawnOffset = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0f, UnityEngine.Random.Range(-1f, 1f));
-            Debug.Log(gameObject.transform.position);
             Vector3 spawnPosition = gameObject.transform.position + spawnOffset;
 
             //实例化僵尸

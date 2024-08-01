@@ -540,10 +540,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wave: 1'
+  m_text: "\u56DE\u5408: 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d0f0bf716f26dd144ada58ec2fbc7a45, type: 2}
-  m_sharedMaterial: {fileID: 24202990792880216, guid: d0f0bf716f26dd144ada58ec2fbc7a45,
+  m_fontAsset: {fileID: 11400000, guid: 1068bad42ee91b44f9b3286804164525, type: 2}
+  m_sharedMaterial: {fileID: -6299182916494743011, guid: 1068bad42ee91b44f9b3286804164525,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1053,10 +1053,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU ARE DEAD
+  m_text: "\u4F60\u5DF2\u7ECF\u6B7B\u4EA1!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d0f0bf716f26dd144ada58ec2fbc7a45, type: 2}
-  m_sharedMaterial: {fileID: 24202990792880216, guid: d0f0bf716f26dd144ada58ec2fbc7a45,
+  m_fontAsset: {fileID: 11400000, guid: 1068bad42ee91b44f9b3286804164525, type: 2}
+  m_sharedMaterial: {fileID: -6299182916494743011, guid: 1068bad42ee91b44f9b3286804164525,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5934,12 +5934,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wave Is Over
-
-    Prepare for the Next Wave'
+  m_text: "\u8FD9\u4E00\u6CE2\u6218\u6597\u7ED3\u675F\n\u4E3A\u4E0B\u4E00\u6CE2\u6218\u6597\u505A\u597D\u51C6\u5907"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d0f0bf716f26dd144ada58ec2fbc7a45, type: 2}
-  m_sharedMaterial: {fileID: 24202990792880216, guid: d0f0bf716f26dd144ada58ec2fbc7a45,
+  m_fontAsset: {fileID: 11400000, guid: 1068bad42ee91b44f9b3286804164525, type: 2}
+  m_sharedMaterial: {fileID: -6299182916494743011, guid: 1068bad42ee91b44f9b3286804164525,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7922,10 +7920,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Health:'
+  m_text: "\u751F\u547D\u503C:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1068bad42ee91b44f9b3286804164525, type: 2}
+  m_sharedMaterial: {fileID: -6299182916494743011, guid: 1068bad42ee91b44f9b3286804164525,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
